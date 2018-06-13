@@ -4,5 +4,7 @@ applications:
   path: src/PalTracker/bin/Release/netcoreapp3.1/publish/
   routes:
   - route: sujay-anil-pal-tracker-review.cfapps.io
+  services:
+  - tracker-database
   env:
     WELCOME_MESSAGE: Hello from the review environment
