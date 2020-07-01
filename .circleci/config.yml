@@ -54,7 +54,7 @@ jobs:
           command: |
             mkdir -p $EXTRACT_DEST
             cd $EXTRACT_DEST
-            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-comma 
+            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz 
 
       - run:
           name: Unzip artifacts
@@ -108,7 +108,7 @@ jobs:
           command: |
             mkdir -p $EXTRACT_DEST
             cd $EXTRACT_DEST
-            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-comm
+            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz
 
       - run:
           name: Unzip artifacts
