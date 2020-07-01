@@ -13,6 +13,9 @@ mkdir -p $artifacts_path
 
 cp manifest-*.yml $build_output
 
+cp scripts/migrate-databases.sh $build_output
+cp -r databases $build_output
+
 dotnet publish src/PalTracker --configuration Release \
     --output $build_output/src/PalTracker/bin/Release/netcoreapp3.1/publish
 
