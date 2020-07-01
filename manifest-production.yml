@@ -1,6 +1,6 @@
 ---
 applications:
-- name: pal-tracke-prod
+- name: pal-tracker-prod
   path: src/PalTracker/bin/Release/netcoreapp3.1/publish/
   routes:
   - route: sujay-anil-pal-tracker-prod.cfapps.io
