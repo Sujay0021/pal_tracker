@@ -141,12 +141,11 @@ jobs:
           name: Deploy
           command: |
             cd $EXTRACT_DEST
-
             cf api $CF_API
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE_PROD"
             cf push -f manifest-$ENVIRONMENT.yml
-             bash ./migrate-databases.sh pal-tracker-prod . tracker-database
+            bash ./migrate-databases.sh pal-tracker-prod . tracker-database
 
 workflows:
   version: 2
