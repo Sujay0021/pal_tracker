@@ -96,7 +96,7 @@ jobs:
       - run:
          name: Install jq
          command: |
-        apt-get -y install jq
+            apt-get -y install jq
 
       - run:
           name: Install netcat
@@ -104,11 +104,11 @@ jobs:
             apt-get -y install netcat
 
       - run:
-            name: Install flyway
+          name: Install flyway
           command: |
-              mkdir -p $EXTRACT_DEST
+            mkdir -p $EXTRACT_DEST
             cd $EXTRACT_DEST
-              curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-comm
+            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-comm
 
       - run:
           name: Unzip artifacts
