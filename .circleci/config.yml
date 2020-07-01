@@ -71,7 +71,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE_REVIEW"
             cf push -f manifest-$ENVIRONMENT.yml
-            bash ./migrate-databases.sh pal-tracker . tracker-database
+            bash ./migrate-databases.sh pal-tracker-review . tracker-database
 
   deployToProd:
     docker:
@@ -125,7 +125,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE_PROD"
             cf push -f manifest-$ENVIRONMENT.yml
-             bash ./migrate-databases.sh pal-tracker . tracker-database
+             bash ./migrate-databases.sh pal-tracker-prod . tracker-database
 
 workflows:
   version: 2
