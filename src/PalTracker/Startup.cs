@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
+using Steeltoe.Common.HealthChecks;
+using Steeltoe.Management.CloudFoundry;
+
 
 namespace PalTracker
 {
@@ -26,6 +29,7 @@ namespace PalTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCloudFoundryActuators(Configuration, Steeltoe.Management.Endpoint.MediaTypeVersion.V2, Steeltoe.Management.Hypermedia.ActuatorContext.ActuatorAndCloudFoundry);
             services.AddControllers();
 
             var message = Configuration.GetValue<string>("WELCOME_MESSAGE");
@@ -44,6 +48,9 @@ namespace PalTracker
            services.AddSingleton( sp => new CloudFoundryInfo(port,memory,index,addr));
            //services.AddSingleton<ITimeEntryRepository, InMemoryTimeEntryRepository>();
            services.AddScoped<ITimeEntryRepository, MySqlTimeEntryRepository>();
+           services.AddScoped<IHealthContributor, TimeEntryHealthContributor>();
+           services.AddSingleton<IOperationCounter<TimeEntry>, OperationCounter<TimeEntry>>();
+           services.AddSingleton<Steeltoe.Management.Endpoint.Info.IInfoContributor, TimeEntryInfoContributor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,7 @@ namespace PalTracker
             {
                 app.UseDeveloperExceptionPage();
             }
+              app.UseCloudFoundryActuators(Steeltoe.Management.Endpoint.MediaTypeVersion.V2, Steeltoe.Management.Hypermedia.ActuatorContext.ActuatorAndCloudFoundry);
 
             app.UseHttpsRedirection();
 
